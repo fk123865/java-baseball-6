@@ -1,5 +1,7 @@
 package baseball.domain;
 
+import baseball.messgae.Message;
+
 import java.util.List;
 
 public class BaseballGame {
@@ -23,13 +25,13 @@ public class BaseballGame {
         int paulCount = paulCount(input);
 
         if (ballCount != 0) {
-            result += ballCount + "볼 ";
+            result += ballCount + Message.BALL.getMessage();
         }
         if (strikeCount != 0) {
-            result += strikeCount + "스트라이크 ";
+            result += strikeCount + Message.STRIKE.getMessage();
         }
         if (paulCount == 3) {
-            result = "낫싱";
+            result = Message.NOTHING.getMessage();
         }
         if (strikeCount == 3) {
             gameClear = false;
