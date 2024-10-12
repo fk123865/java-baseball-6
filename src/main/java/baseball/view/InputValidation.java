@@ -5,23 +5,21 @@ public class InputValidation {
 
     // 사용자의 숫자를 검사
     public void readNumberValidation(String input) {
-        if (isNotNumber(input) || input.length() != 3) {
-            throw new IllegalArgumentException();
-        }
-        if (isInputZero(input)) {
-            throw new IllegalArgumentException();
+        if (isNotNumber(input) || input.length() != 3 || isInputZero(input)) {
+            throw new IllegalArgumentException("세자리의 숫자만 입력 가능합니다.");
         }
     }
 
     // 사용자의 재시작 여부를 검사
     public void readRetryValidation(String input) {
-        if (isNotNumber(input)) {
-            throw new IllegalArgumentException();
+        int restartNumber = Integer.parseInt(input);
+        if (isNotNumber(input) || isNot1or2(restartNumber)) {
+            throw new IllegalArgumentException("1 또는 2만 입력 가능합니다.");
         }
-        int i = Integer.parseInt(input);
-        if (!(i == 1 || i == 2)) {
-            throw new IllegalArgumentException();
-        }
+    }
+
+    private static boolean isNot1or2(int restartNumber) {
+        return !(restartNumber == 1 || restartNumber == 2);
     }
 
     private boolean isNotNumber(String input) {
