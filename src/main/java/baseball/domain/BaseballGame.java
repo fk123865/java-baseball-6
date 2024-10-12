@@ -19,59 +19,14 @@ public class BaseballGame {
 
     // 사용자의 입력과 컴퓨터의 숫자를 비교해 결과를 만듬
     public void game(String input) {
-        result = "";
-        int ballCount = ballCount(input);
-        int strikeCount = strikeCount(input);
-        int paulCount = paulCount(input);
-
-        if (ballCount != 0) {
-            result += ballCount + Message.BALL.getMessage();
-        }
-        if (strikeCount != 0) {
-            result += strikeCount + Message.STRIKE.getMessage();
-        }
-        if (paulCount == 3) {
-            result = Message.NOTHING.getMessage();
-        }
-        if (strikeCount == 3) {
+        result = ResultMaker.getResult(input, computer);
+        if (resultIsThreeStrike()) {
             gameClear = false;
         }
     }
 
-    private int ballCount(String input){
-        int count = 0;
-        String[] inputNumbers = input.split("");
-        for (int i = 0; i < inputNumbers.length; i++) {
-            int inputNumber = Integer.parseInt(inputNumbers[i]);
-            if (computer.contains(inputNumber) && !computer.get(i).equals(inputNumber)) {
-                count ++;
-            }
-        }
-        return count;
-    }
-
-    private int strikeCount(String input){
-        int count = 0;
-        String[] inputNumbers = input.split("");
-        for (int i = 0; i < inputNumbers.length; i++) {
-            int inputNumber = Integer.parseInt(inputNumbers[i]);
-            if (computer.contains(inputNumber) && computer.get(i).equals(inputNumber)) {
-                count ++;
-            }
-        }
-        return count;
-    }
-
-    private int paulCount(String input){
-        int count = 0;
-        String[] inputNumbers = input.split("");
-        for (int i = 0; i < inputNumbers.length; i++) {
-            int inputNumber = Integer.parseInt(inputNumbers[i]);
-            if (!computer.contains(inputNumber)) {
-                count ++;
-            }
-        }
-        return count;
+    private boolean resultIsThreeStrike() {
+        return result.equals(Message.THREE_STRIKE.getMessage());
     }
 
     public boolean isNotGameClear() {

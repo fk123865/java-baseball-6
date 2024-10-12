@@ -8,7 +8,8 @@ public enum Message {
 
     BALL("볼 "),
     STRIKE("스트라이크 "),
-    NOTHING("낫싱");
+    NOTHING("낫싱"),
+    THREE_STRIKE("3스트라이크");
 
 
     private String message;
@@ -17,7 +18,12 @@ public enum Message {
         this.message = message;
     }
 
+    @Override
+    public String toString() {
+        return message;
+    }
+
     public String getMessage() {
         return message;
     }
-}
+ }

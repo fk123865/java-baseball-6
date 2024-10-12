@@ -15,6 +15,7 @@ public class InputValidation {
         int restartNumber = Integer.parseInt(input);
         if (isNotNumber(input) || isNot1or2(restartNumber)) {
             throw new IllegalArgumentException("1 또는 2만 입력 가능합니다.");
+
         }
     }
 
