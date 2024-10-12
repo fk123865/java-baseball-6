@@ -15,15 +15,19 @@ public class Controller {
         // 게임 시작
         outputView.printStart();
         do {
+            // 게임 세팅
             game.init();
 
-            // 사용자가 숫자를 맞힐 때까지 반복
-            while (game.isNotGameClear()){
-                game.game(inputView.readNumber());
-                outputView.printResult(game.getResult());
-            }
-            // while문이 끝나면 성공한 것으로 Clear를 출력
+            playGame();
+
             outputView.printClear();
         } while (game.isRestart(inputView.readRetry())); // 사용자의 재시작 여부를 확인
+    }
+
+    private void playGame() {
+        while (game.isNotGameClear()){
+            game.game(inputView.readNumber());
+            outputView.printResult(game.getResult());
+        }
     }
 }
